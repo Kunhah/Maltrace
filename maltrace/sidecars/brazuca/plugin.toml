@@ -1,0 +1,19 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+
+[plugin]
+id = "brazuca"
+name = "Brazilian OSINT resources + scrapers"
+version = "0.2.0"
+protocol_version = 1
+license = "MIT"
+description = "Curated Brazilian OSINT portals plus live scrapers: BrasilAPI (CNPJ / CEP / DDD / bank / FIPE), ViaCEP, Hudson Rock Cavalier (free infostealer/breach lookups)."
+homepage = "https://github.com/osintbrazuca/osint-brazuca"
+authors = ["maltrace contributors"]
+
+[runner]
+command = ".venv/bin/python"
+args = ["adapter.py"]
+
+[requirements]
+python = ">=3.11"
+network = true

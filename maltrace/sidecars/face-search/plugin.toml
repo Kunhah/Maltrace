@@ -1,0 +1,19 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+
+[plugin]
+id = "face-search"
+name = "Face search"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Reverse face search via InsightFace + multiple web backends (Yandex, Bing, Google Lens, FaceCheck.ID)."
+authors = ["maltrace contributors"]
+
+[runner]
+command = ".venv/bin/python"
+args = ["adapter.py"]
+
+[requirements]
+python = "3.11–3.13 (3.14 has no InsightFace wheels — see SETUP.md)"
+system = ["~120 MB disk for InsightFace model cache"]
+network = true

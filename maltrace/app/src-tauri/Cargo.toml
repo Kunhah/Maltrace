@@ -1,0 +1,86 @@
+[package]
+name = "app"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+edition = "2021"
+default-run = "app"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.32", features = ["bundled-sqlcipher-vendored-openssl"] }
+anyhow = "1"
+thiserror = "1"
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+tokio = { version = "1", features = ["process", "io-util", "rt-multi-thread", "macros", "signal"] }
+parking_lot = "0.12"
+axum = "0.7"
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "fs", "trace"] }
+dirs = "5"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+toml = "0.8"
+base64 = "0.22"
+flate2 = "1"
+tar = "0.4"
+keyring = "3"
+ed25519-dalek = { version = "2", features = ["std"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+futures = "0.3"
+
+# Native GPU-rendered frontend (egui/eframe). Optional + behind the `native`
+# feature so it's only compiled for the `maltrace-native` bin and never bloats
+# the Tauri or server builds. eframe defaults to the glow (OpenGL) backend,
+# which renders through the system GL driver directly — works where the
+# WebKitGTK webview's DMABUF path fails (e.g. NVIDIA + Wayland).
+eframe = { version = "0.29", optional = true }
+# Image decoding for the native build's inspector thumbnails. Behind `native`
+# so it never compiles into the Tauri/server builds. Default features off +
+# only the formats we accept, to keep the build lean.
+image = { version = "0.25", optional = true, default-features = false, features = [
+    "jpeg",
+    "png",
+    "gif",
+    "webp",
+    "bmp",
+] }
+# Native OS file-open dialog for the egui build (Browse… buttons). Behind
+# `native` so it never touches the Tauri/server builds. The xdg-portal backend
+# avoids a hard GTK dependency on Linux.
+rfd = { version = "0.15", optional = true, default-features = false, features = [
+    "xdg-portal",
+    "tokio",
+] }
+
+[features]
+native = ["dep:eframe", "dep:image", "dep:rfd"]
+
+[[bin]]
+name = "app"
+path = "src/main.rs"
+
+[[bin]]
+name = "maltrace-server"
+path = "src/bin/server.rs"
+
+[[bin]]
+name = "maltrace-native"
+path = "src/bin/native.rs"
+required-features = ["native"]
+

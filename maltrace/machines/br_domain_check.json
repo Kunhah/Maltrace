@@ -1,0 +1,11 @@
+{
+  "id": "br_domain_check",
+  "name": "BR Domain Check (.br domain)",
+  "description": "Brazilian domain workup: registro.br registration status / expiry / nameservers via BrasilAPI, curated .br domain portals, and a Hudson Rock infostealer-exposure summary for the domain. Key-free.",
+  "input_type": "Domain",
+  "steps": [
+    { "transform": "brazuca_registrobr",        "on": "input" },
+    { "transform": "brazuca_resources",         "on": "input" },
+    { "transform": "brazuca_hudson_rock_domain", "on": "input" }
+  ]
+}

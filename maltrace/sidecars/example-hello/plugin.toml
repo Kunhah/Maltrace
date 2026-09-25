@@ -1,0 +1,24 @@
+# Minimal example maltrace plugin.
+#
+# Demonstrates the smallest possible plugin: one transform that takes any
+# Domain entity and produces a single WebMetadata "hello, <domain>" event.
+# Use this as a copy-paste starting point for your own plugin.
+#
+# See docs/PLUGIN_SDK.md for the full manifest schema and JSON protocol.
+
+[plugin]
+id = "example-hello"
+name = "Example: hello"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "30-line example plugin that demonstrates the maltrace plugin SDK."
+
+[runner]
+# Pure stdlib — no venv needed, just the system Python.
+command = "/usr/bin/env"
+args = ["python3", "hello.py"]
+
+[requirements]
+python = ">=3.8"
+network = false

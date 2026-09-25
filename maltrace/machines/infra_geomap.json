@@ -1,0 +1,11 @@
+{
+  "id": "infra_geomap",
+  "name": "Infrastructure Geo-Map (Domain → IPs → pins)",
+  "description": "Resolve a domain to its hosting IPs, pull its certificate issuers, then geolocate every IP — dropping map pins for the hosting locations and tagging the ASN / hosting provider. Open the Map view to see the result.",
+  "input_type": "Domain",
+  "steps": [
+    { "transform": "sfp_dnsresolve", "on": "input" },
+    { "transform": "crtsh_certs",    "on": "input" },
+    { "transform": "ip_geolocate",   "on": "new", "filter_type": "IpAddress" }
+  ]
+}

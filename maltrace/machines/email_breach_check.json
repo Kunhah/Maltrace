@@ -1,0 +1,11 @@
+{
+  "id": "email_breach_check",
+  "name": "Email Breach Check",
+  "description": "Pivot from an email address into known breaches, gravatar, and account search across common platforms.",
+  "input_type": "EmailAddress",
+  "steps": [
+    { "transform": "sfp_haveibeenpwned",  "on": "input" },
+    { "transform": "sfp_gravatar",        "on": "input" },
+    { "transform": "sfp_accounts",        "on": "input" }
+  ]
+}

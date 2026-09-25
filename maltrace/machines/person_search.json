@@ -1,0 +1,13 @@
+{
+  "id": "person_search",
+  "name": "Person Search",
+  "description": "Search a name across social profiles, common account platforms, darknet mentions, and curated Brazilian OSINT sources. Use this as the first move after dropping a Person on the canvas.",
+  "input_type": "Person",
+  "steps": [
+    { "transform": "sfp_socialprofiles",   "on": "input" },
+    { "transform": "sfp_accounts",         "on": "input" },
+    { "transform": "sfp_ahmia",            "on": "input" },
+    { "transform": "sfp_onionsearchengine","on": "input" },
+    { "transform": "brazuca_resources",    "on": "input" }
+  ]
+}

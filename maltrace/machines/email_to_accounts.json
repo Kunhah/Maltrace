@@ -1,0 +1,11 @@
+{
+  "id": "email_to_accounts",
+  "name": "Email → Accounts (enrich + enumerate)",
+  "description": "Enrich an email (Gravatar profile, mail provider, disposable flag, breach links), then take the derived username and enumerate ~40 social/dev sites for matching profiles. Key-free.",
+  "input_type": "EmailAddress",
+  "steps": [
+    { "transform": "email_enrich",        "on": "input" },
+    { "transform": "sfp_haveibeenpwned",  "on": "input" },
+    { "transform": "username_lookup",     "on": "new", "filter_type": "Username" }
+  ]
+}

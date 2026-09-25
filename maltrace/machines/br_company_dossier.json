@@ -1,0 +1,13 @@
+{
+  "id": "br_company_dossier",
+  "name": "BR Company Dossier (CNPJ workup)",
+  "description": "Brazilian company workup: validate any CNPJ (matriz/filial), pull the full BrasilAPI registration (address, phones, partners), surface curated BR company/compliance portals, search official gazettes — then PEP-screen each discovered partner against the Câmara dos Deputados.",
+  "input_type": "Organization",
+  "steps": [
+    { "transform": "brazuca_cnpj_validate",   "on": "input" },
+    { "transform": "brazuca_brasilapi_cnpj",   "on": "input" },
+    { "transform": "brazuca_resources",        "on": "input" },
+    { "transform": "brazuca_querido_diario",   "on": "input" },
+    { "transform": "brazuca_camara_deputado",  "on": "new", "filter_type": "Person" }
+  ]
+}

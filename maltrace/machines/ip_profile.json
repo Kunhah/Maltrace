@@ -1,0 +1,11 @@
+{
+  "id": "ip_profile",
+  "name": "IP Profile",
+  "description": "Enrich an IP with WHOIS, geolocation, BGP / ASN, and reverse hosts.",
+  "input_type": "IpAddress",
+  "steps": [
+    { "transform": "sfp_ripe",      "on": "input" },
+    { "transform": "sfp_ipinfo",    "on": "input" },
+    { "transform": "sfp_bgpview",   "on": "input" }
+  ]
+}

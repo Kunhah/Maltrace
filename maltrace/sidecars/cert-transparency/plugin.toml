@@ -1,0 +1,27 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Certificate Transparency log mining via crt.sh. Given a Domain, query the
+# public CT logs for every certificate ever issued for that domain and its
+# subdomains. This is one of the single highest-value passive recon moves in
+# OSINT: CT logs reveal subdomains that never appear in DNS brute-force
+# wordlists, plus the issuing CAs and the organisations named on the certs.
+#
+# Pure stdlib (urllib + json). No API key, no venv. crt.sh is free.
+
+[plugin]
+id = "cert-transparency"
+name = "Certificate Transparency (crt.sh)"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Mine crt.sh Certificate Transparency logs for subdomains, issued certificates and issuer organisations. Passive, no API key."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true

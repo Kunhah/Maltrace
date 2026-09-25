@@ -1,0 +1,21 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+
+[plugin]
+id = "spiderfoot"
+name = "SpiderFoot adapter"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Wraps SpiderFoot's 230+ sfp_* modules as maltrace transforms."
+homepage = "https://github.com/smicallef/spiderfoot"
+authors = ["maltrace contributors"]
+
+[runner]
+# .venv/bin/python lives under this plugin's directory; relative path resolves
+# against <plugin_dir>.
+command = ".venv/bin/python"
+args = ["adapter.py"]
+
+[requirements]
+python = ">=3.11"
+network = true

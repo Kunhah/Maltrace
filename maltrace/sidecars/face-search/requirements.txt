@@ -1,0 +1,18 @@
+# maltrace face-search sidecar dependencies.
+# Bundled `facesearch` package lives at ./facesearch — no PyPI install for it.
+
+# Face detection + embedding.
+insightface>=0.7.3
+onnxruntime>=1.17
+opencv-python-headless
+
+# Image + HTTP stack used by both the adapter and facesearch internals.
+numpy>=1.24
+Pillow>=10.0
+requests>=2.31
+httpx[http2]>=0.27
+beautifulsoup4>=4.12
+
+# Optional: Google Lens backend. After install run `playwright install chromium`.
+# Comment out if you don't need Lens — it's a ~300 MB browser download.
+# playwright>=1.44

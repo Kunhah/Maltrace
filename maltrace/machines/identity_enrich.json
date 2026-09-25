@@ -1,0 +1,11 @@
+{
+  "id": "identity_enrich",
+  "name": "Identity Enrich (Wikidata + social)",
+  "description": "Enrich a person or organisation name via Wikidata (official site, country, founders/CEO/parent-company relations as pivotable nodes), and search common social/account platforms. First move for named-entity investigations.",
+  "input_type": "Person",
+  "steps": [
+    { "transform": "wikidata_lookup",    "on": "input" },
+    { "transform": "sfp_socialprofiles", "on": "input" },
+    { "transform": "sfp_accounts",       "on": "input" }
+  ]
+}

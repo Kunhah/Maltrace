@@ -1,0 +1,13 @@
+{
+  "id": "br_person_dossier",
+  "name": "BR Person Dossier (Brazilian person)",
+  "description": "Brazilian-focused person workup: validate any CPF in the label (+ fiscal region), surface curated BR portals (Receita, TSE, JusBrasil…), PEP-screen against the Câmara dos Deputados, search municipal official gazettes, and enumerate social accounts.",
+  "input_type": "Person",
+  "steps": [
+    { "transform": "brazuca_cpf_validate",    "on": "input" },
+    { "transform": "brazuca_resources",       "on": "input" },
+    { "transform": "brazuca_camara_deputado",  "on": "input" },
+    { "transform": "brazuca_querido_diario",   "on": "input" },
+    { "transform": "sfp_accounts",             "on": "input" }
+  ]
+}

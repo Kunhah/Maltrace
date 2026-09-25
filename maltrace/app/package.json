@@ -1,0 +1,45 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:web": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "WEBKIT_DISABLE_DMABUF_RENDERER=1 tauri",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "server": "cd src-tauri && cargo run --bin maltrace-server --",
+    "server:release": "cd src-tauri && cargo run --release --bin maltrace-server --",
+    "setup": "bash ../scripts/setup.sh",
+    "start": "bash ../scripts/run.sh"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2",
+    "@types/cytoscape": "^3.21.9",
+    "@types/leaflet": "^1.9.21",
+    "cytoscape": "^3.33.4",
+    "cytoscape-dagre": "^3.0.0",
+    "cytoscape-fcose": "^2.2.0",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "react": "^19.1.0",
+    "react-cytoscapejs": "^2.0.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "jsdom": "^29.1.1",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4",
+    "vitest": "^4.1.7"
+  }
+}

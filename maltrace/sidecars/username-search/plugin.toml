@@ -1,0 +1,28 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Curated social-media username enumeration. Given a USERNAME entity, this
+# plugin probes ~80 well-known social/dev/community sites and reports which
+# of them have a public profile under that handle.
+#
+# Inspired by Sherlock / Maigret but trimmed to a tight curated list whose
+# detection rules are stable enough to ship to end users without constant
+# upkeep. The detection logic uses stdlib HTTP and a thread pool — no
+# external dependencies.
+
+[plugin]
+id = "username-search"
+name = "Username profile enumeration"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Probe ~80 social/dev/community sites for a username and emit profile URL hits. Sherlock-style enumeration with curated, stable detection rules."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true

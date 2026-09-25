@@ -1,0 +1,11 @@
+{
+  "id": "footprint_l1",
+  "name": "Domain Footprint L1",
+  "description": "Baseline domain reconnaissance: WHOIS, DNS resolution, basic subdomain lookup. Cheap and key-free.",
+  "input_type": "Domain",
+  "steps": [
+    { "transform": "sfp_whois",           "on": "input" },
+    { "transform": "sfp_dnsresolve",      "on": "input" },
+    { "transform": "sfp_dnsbrute",        "on": "input" }
+  ]
+}

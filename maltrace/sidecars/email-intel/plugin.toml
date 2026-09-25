@@ -1,0 +1,28 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Email-address OSINT enrichment. Given an EmailAddress, derive:
+#   * the local part as a USERNAME (pivot into username-search).
+#   * a Gravatar profile + avatar (the email's MD5 → public profile JSON).
+#   * the mail provider (from the domain) and a disposable-address flag.
+#   * a curated set of openable reputation / breach pivot links (HIBP,
+#     EmailRep, Epieos, Hunter, IntelX) so the analyst can click through.
+#
+# Pure stdlib (urllib + hashlib + json). No API key, no venv.
+
+[plugin]
+id = "email-intel"
+name = "Email OSINT enrichment"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Enrich an email: Gravatar profile/avatar, mail provider, disposable check, username pivot, and curated breach/reputation lookup links. No API key."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true

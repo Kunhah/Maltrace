@@ -1,0 +1,25 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Crypto address OSINT. Given a BITCOIN_ADDRESS or ETHEREUM_ADDRESS entity,
+# query public block explorers (mempool.space for BTC, ethplorer freekey
+# for ETH) for balance, transaction counts and first/last activity. Surfaces
+# a few well-known threat-intel sources (Chainabuse, Bitcoinabuse, Etherscan
+# label cloud) as openable URLs.
+
+[plugin]
+id = "crypto-osint"
+name = "Crypto address OSINT"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Live BTC/ETH wallet lookups via free public explorers (mempool.space, ethplorer). Plus curated abuse-reporting links."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true

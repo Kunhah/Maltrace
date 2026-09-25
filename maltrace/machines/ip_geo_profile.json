@@ -1,0 +1,10 @@
+{
+  "id": "ip_geo_profile",
+  "name": "IP Geo Profile (geo + ASN + rDNS)",
+  "description": "Full first-party enrichment for an IP: geolocation pin (Map view), country, hosting provider and ASN via ip-api.com, plus reverse-DNS hostnames. Key-free.",
+  "input_type": "IpAddress",
+  "steps": [
+    { "transform": "ip_geolocate",   "on": "input" },
+    { "transform": "ip_reverse_dns", "on": "input" }
+  ]
+}

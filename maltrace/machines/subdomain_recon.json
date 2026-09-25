@@ -1,0 +1,11 @@
+{
+  "id": "subdomain_recon",
+  "name": "Subdomain Recon (CT + Archive + DNS)",
+  "description": "Discover subdomains from Certificate Transparency logs (crt.sh) and the Internet Archive, then resolve each discovered host to an IP. Passive, no API key.",
+  "input_type": "Domain",
+  "steps": [
+    { "transform": "crtsh_subdomains",   "on": "input" },
+    { "transform": "wayback_subdomains", "on": "input" },
+    { "transform": "sfp_dnsresolve",     "on": "new", "filter_type": "Domain" }
+  ]
+}

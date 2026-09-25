@@ -1,0 +1,29 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Network intelligence for IP addresses. Given an IpAddress, enrich it with:
+#   * geolocation (country, region, city, lat/lon) via ip-api.com — free,
+#     no key, 45 req/min. The lat/lon is emitted as a PHYSICAL_COORDINATES
+#     entity so it lights up the maltrace Map view automatically.
+#   * the hosting ISP / organisation (PROVIDER_HOSTING).
+#   * the autonomous system (BGP_AS_OWNER / Asn).
+#   * reverse-DNS hostnames (PTR records) via the system resolver.
+#
+# Pure stdlib (urllib + socket + json). No API key, no venv.
+
+[plugin]
+id = "net-intel"
+name = "Network intelligence (geo + ASN + rDNS)"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Geolocate IPs (ip-api.com), resolve hosting provider + ASN, and reverse-DNS to hostnames. Coordinates feed the Map view. No API key."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true

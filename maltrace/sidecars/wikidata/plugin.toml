@@ -1,0 +1,28 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Wikidata / Wikipedia entity enrichment. Given a Person or Organization
+# name, resolve it to a Wikidata item and pull structured facts: official
+# website, country, inception date, and — crucially for link analysis —
+# related entities (employer, founders, CEO, parent company, subsidiaries)
+# which become first-class nodes you can pivot on. This mirrors Maltego's
+# "company / person" enrichment transforms but against an open knowledge base.
+#
+# Pure stdlib (urllib + json). No API key, no venv. Wikidata's API is free.
+
+[plugin]
+id = "wikidata"
+name = "Wikidata / Wikipedia enrichment"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Resolve a person/organization name to a Wikidata item and emit structured facts + related-entity pivots (employer, founders, parent org, website, country). No API key."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true

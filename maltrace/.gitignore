@@ -1,0 +1,32 @@
+# Rust / Tauri
+target/
+**/*.rs.bk
+*.pdb
+
+# Node
+node_modules/
+dist/
+.vite/
+*.log
+.npm/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Local data / build artifacts
+data/
+*.sqlite
+*.sqlite-journal
+*.db
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp

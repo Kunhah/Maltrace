@@ -1,0 +1,27 @@
+# maltrace plugin manifest — see docs/PLUGIN_SDK.md for the schema.
+#
+# Internet Archive (Wayback Machine) mining via the public CDX API. Given a
+# Domain or URL, recover the historic URLs the Archive has captured — a
+# classic Maltego move for finding old endpoints, leaked paths, and
+# subdomains that no longer resolve. Also derives distinct subdomains from
+# the captured URL set.
+#
+# Pure stdlib (urllib + json). No API key, no venv. The CDX API is free.
+
+[plugin]
+id = "wayback"
+name = "Wayback Machine (Internet Archive)"
+version = "0.1.0"
+protocol_version = 1
+license = "MIT"
+description = "Recover historic URLs and subdomains for a domain from the Internet Archive CDX API. Passive, no API key."
+authors = ["maltrace contributors"]
+
+[runner]
+# Pure stdlib — no venv needed.
+command = "/usr/bin/env"
+args = ["python3", "adapter.py"]
+
+[requirements]
+python = ">=3.10"
+network = true
